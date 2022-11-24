@@ -1,0 +1,24 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "title": "Learn Redux",
+      "description": "I need practice redux to future proyects, is a tools advance"
+    },
+    {
+      "id": 2,
+      "title": "Learn Node",
+      "description": "I need go more deep in backend, because i want to be fullstack dev"
+    },
+    {
+      "id": 3,
+      "title": "Learn Flutter",
+      "description": "I think that the mobile dev is very cool"
+    },
+    {
+      "id": 4,
+      "title": "Learn Testing",
+      "description": "I very important because with the testing i can protect my code"
+    }
+  ]
+}

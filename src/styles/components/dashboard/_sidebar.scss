@@ -1,0 +1,45 @@
+@use "../../base/variables" as v;
+.sidebar {
+  position: fixed;
+  height: 100vh;
+  width: 70px;
+  background-color: v.$dark_color;
+  padding: 10px;
+  color: v.$light_color;
+  z-index: 20;
+  left: -75px;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__show {
+    left: 0px;
+  }
+
+  &__menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__btn {
+    margin-bottom: 25px;
+    margin-top: 4px;
+  }
+
+  &__item {
+    color: v.$light_color;
+    transition: all 0.3s;
+    font-size: 22px;
+    padding: 15px 0px;
+    &:hover {
+      color: v.$tertiary_color;
+    }
+  }
+
+  &__active {
+    color: v.$blue_color;
+  }
+}
