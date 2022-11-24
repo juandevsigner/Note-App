@@ -7,11 +7,11 @@ import { GET_NOTES,
     TOGGLE_ARCHIVED,
     DELETE_NOTE,
     DELETE_NOTE_ERROR,
-    DELETE_NOTE_OK,
     LOAD_NOTE_TO_EDIT,
     UPDATE_NOTE,
     UPDATE_NOTE_LOADING,
     UPDATE_NOTE_ERROR,
+    DELETE_NOW
 } from "../actions.types"
 
 import { axiosClient } from "../config/axiosClient";
@@ -112,8 +112,8 @@ const toggleArchived=note=>({
 
 export const deleteNoteAction =id=>{
     return async(dispatch)=>{
-        dispatch(deleteNote())
         try {
+            dispatch(deleteNote())
             await axiosClient.delete(`notes/${id}`)
             dispatch(deleteNoteOk(id))
         } catch (error) {
@@ -128,7 +128,7 @@ const deleteNote =()=>({
 })
 
 const deleteNoteOk =(id)=>({
-    type:DELETE_NOTE_OK,
+    type:DELETE_NOW,
     payload: id
 })
 

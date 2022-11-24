@@ -7,11 +7,11 @@ import { GET_NOTES,
     TOGGLE_ARCHIVED,
     DELETE_NOTE,
     DELETE_NOTE_ERROR,
-    DELETE_NOTE_OK,
     LOAD_NOTE_TO_EDIT,
     UPDATE_NOTE,
     UPDATE_NOTE_LOADING,
     UPDATE_NOTE_ERROR,
+    DELETE_NOW
 } from "../actions.types"
 
 const initialState ={
@@ -63,11 +63,11 @@ export const notesReducers =(state = initialState, action)=>{
             ...state,
             notes: state.notes.map(note => note.id === action.payload.id ? note = action.payload : note)
         }
-        case DELETE_NOTE_OK:
+        case DELETE_NOW:
             return{
                 ...state,
-                notes: state.notes.filter(note => note.id !== action.payload),
                 loading: false,
+                notes: state.notes.filter(note => note.id !== action.payload)
             }
         case LOAD_NOTE_TO_EDIT:
             return{

@@ -21,8 +21,8 @@ export const NoteCard = ({ note }) => {
   const { id, title, description, featured } = note;
   const { handleFeatured, handleArchived } = useToggleNote(note);
 
-  const handleDelete = () => {
-    dispatch(deleteNoteAction(id));
+  const handleDelete = async () => {
+    await dispatch(deleteNoteAction(id));
   };
 
   const handleEdit = () => {
