@@ -54,3 +54,19 @@ button {
     cursor: pointer;
   }
 }
+.spinner {
+  position: fixed;
+  z-index: 100;
+  top: 48%;
+  right: 48%;
+}
+.empty {
+  position: fixed;
+  z-index: 100;
+  top: 40%;
+  right: 47%;
+  color: white;
+}
+.hidden {
+  display: none;
+}

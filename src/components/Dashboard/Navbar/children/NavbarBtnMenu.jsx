@@ -7,7 +7,6 @@ export const NavbarBtnMenu = () => {
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(showSidebarAction());
-    console.log("click");
   };
   return (
     <Tooltip placement="left" title="Open Menu">

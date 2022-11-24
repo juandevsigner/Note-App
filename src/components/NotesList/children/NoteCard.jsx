@@ -1,47 +1,77 @@
+import { useDispatch } from "react-redux";
 import { Card, Tooltip } from "antd";
+import { useLocation } from "react-router-dom";
 import {
   StarOutlined,
   EditOutlined,
   DeleteOutlined,
   FolderOpenOutlined,
+  StarFilled,
 } from "@ant-design/icons";
+import { useToggleNote } from "../../../hooks/useToggleNote";
+import {
+  deleteNoteAction,
+  loadNoteAction,
+} from "../../../actions/notesActions";
+import { showModalActionEdit } from "../../../actions";
 
-export const NoteCard = () => {
+export const NoteCard = ({ note }) => {
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const { id, title, description, featured } = note;
+  const { handleFeatured, handleArchived } = useToggleNote(note);
+
+  const handleDelete = () => {
+    dispatch(deleteNoteAction(id));
+  };
+
+  const handleEdit = () => {
+    dispatch(showModalActionEdit());
+    dispatch(loadNoteAction(note));
+  };
+
   return (
     <Card
       size="medium"
-      title="Note Tittle"
+      title={title}
       className="noteslist__card"
       extra={
-        <button className="noteslist__star">
-          <StarOutlined />
+        <button
+          onClick={handleFeatured}
+          className={`noteslist__star ${
+            location.pathname === "/archived" ? "hidden" : ""
+          }`}
+        >
+          {featured ? <StarFilled /> : <StarOutlined />}
         </button>
       }
       actions={[
         <Tooltip title="Edit Note" placement="bottom">
-          <button onClick={() => console.log("edit")}>
+          <button onClick={handleEdit}>
             <EditOutlined key="edit" />
           </button>
         </Tooltip>,
-        <Tooltip title="Archived Note" placement="bottom">
-          <button onClick={() => console.log("archived")}>
+        <Tooltip
+          title={
+            location.pathname === "/archived"
+              ? "Unarchived Note"
+              : "Archived Note"
+          }
+          placement="bottom"
+        >
+          <button onClick={handleArchived}>
             <FolderOpenOutlined key="archived" />
           </button>
         </Tooltip>,
 
         <Tooltip title="Delete Note" placement="bottom">
-          <button onClick={() => console.log("delete")}>
+          <button onClick={handleDelete}>
             <DeleteOutlined key="delete" />
           </button>
         </Tooltip>,
       ]}
     >
-      <p className="noteslist__text">
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to{" "}
-      </p>
+      <p className="noteslist__text">{description}</p>
     </Card>
   );
 };
